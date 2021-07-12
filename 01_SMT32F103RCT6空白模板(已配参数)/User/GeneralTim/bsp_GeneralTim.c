@@ -107,6 +107,22 @@ static void GENERAL_TIM_Mode_Config(void)
 	TIM_ClearFlag(GENERAL_TIM,TIM_IT_CC2);
 	TIM_ITConfig (GENERAL_TIM, TIM_IT_CC2 , ENABLE );
 	
+	//////////////通道3
+	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_2;
+	GPIO_Init(GPIOA,&GPIO_InitStructure);
+	TIM_ICInitStructure.TIM_Channel = TIM_Channel_2;
+	TIM_ICInit(TIM2, &TIM_ICInitStructure);
+	TIM_ClearFlag(GENERAL_TIM,TIM_IT_CC3);
+	TIM_ITConfig (GENERAL_TIM, TIM_IT_CC3 , ENABLE );
+	
+	//////////////通道4
+	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_3;
+	GPIO_Init(GPIOA,&GPIO_InitStructure);
+	TIM_ICInitStructure.TIM_Channel = TIM_Channel_3;
+	TIM_ICInit(TIM2, &TIM_ICInitStructure);
+	TIM_ClearFlag(GENERAL_TIM,TIM_IT_CC4);
+	TIM_ITConfig (GENERAL_TIM, TIM_IT_CC4 , ENABLE );
+	
 	// 清除更新和捕获中断标志位
   TIM_ClearFlag(GENERAL_TIM, TIM_FLAG_Update);	
   // 开启更新和捕获中断  
