@@ -27,7 +27,7 @@
 extern TIM_ICUserValueTypeDef TIM_ICUserValueStructure1;
 extern TIM_ICUserValueTypeDef TIM_ICUserValueStructure2;
 extern USER TIME_SAVE;
-extern u16 STATE;
+extern uint16_t STATE_USE;
 extern Flag FlagS;
 void NMI_Handler(void)
 {
@@ -83,11 +83,11 @@ void GENERAL_TIM_INT_FUN(void)
 {
 	// 当要被捕获的信号的周期大于定时器的最长定时时，定时器就会溢出，产生更新中断
 	// 这个时候我们需要把这个最长的定时周期加到捕获信号的时间里面去
-	if ( (TIM_GetITStatus ( GENERAL_TIM, TIM_IT_Update) != RESET) && STATE == 0) //传感器1溢出              
+	if ( (TIM_GetITStatus ( GENERAL_TIM, TIM_IT_Update) != RESET) && (STATE_USE == 0)) //传感器1溢出              
 	{	
 		TIM_ICUserValueStructure1.Capture_Period ++;
 		TIM_ClearITPendingBit ( GENERAL_TIM, TIM_FLAG_Update ); 		
-	}else if( (TIM_GetITStatus ( GENERAL_TIM, TIM_IT_Update) != RESET) && STATE == 1)//传感器2溢出
+	}else if( (TIM_GetITStatus ( GENERAL_TIM, TIM_IT_Update) != RESET) && (TIM_ICUserValueStructure2.Capture_StartFlag == 1))//传感器2溢出
 	{
 		TIM_ICUserValueStructure2.Capture_Period ++;
 		TIM_ClearITPendingBit ( GENERAL_TIM, TIM_FLAG_Update ); 
@@ -107,6 +107,20 @@ void GENERAL_TIM_INT_FUN(void)
 		FlagS.TIM2_CH2 = 1;
 		TIM_ClearITPendingBit (GENERAL_TIM,TIM_IT_CC2);
 	}
+	/*********************************传感器3捕获中断处理**************************************************/
+	if (TIM_GetITStatus (GENERAL_TIM, TIM_IT_CC3 ) != RESET)
+	{
+		FlagS.TIM2_CH3 = 1;
+		TIM_ClearITPendingBit (GENERAL_TIM,TIM_IT_CC3);
+	}
+	if (TIM_GetITStatus (GENERAL_TIM, TIM_IT_CC4 ) != RESET)
+	{
+		FlagS.TIM2_CH4 = 1;
+		TIM_ClearITPendingBit (GENERAL_TIM,TIM_IT_CC4);
+	}
+	
+	
+	
 	TIM2_CaptureCallBack();
 	
 }

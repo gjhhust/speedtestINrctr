@@ -4,12 +4,7 @@
 // 定时器输入捕获用户自定义变量结构体定义
 TIM_ICUserValueTypeDef TIM_ICUserValueStructure1 = {0,0,0,0};//tim2 CH1
 TIM_ICUserValueTypeDef TIM_ICUserValueStructure2 = {0,0,0,0};//tim2 CH2
-TIM_ICUserValueTypeDef TIM_ICUserValueStructure3 = {0,0,0,0};//tim2 CH3
-TIM_ICUserValueTypeDef TIM_ICUserValueStructure4 = {0,0,0,0};//tim2 CH4
-TIM_ICUserValueTypeDef TIM_ICUserValueStructure5 = {0,0,0,0};//tim3 CH1
-TIM_ICUserValueTypeDef TIM_ICUserValueStructure6 = {0,0,0,0};//tim3 CH2
-TIM_ICUserValueTypeDef TIM_ICUserValueStructure7 = {0,0,0,0};//tim3 CH3
-TIM_ICUserValueTypeDef TIM_ICUserValueStructure8 = {0,0,0,0};//tim3 CH4
+
 
 
 // 中断优先级配置
@@ -110,7 +105,7 @@ static void GENERAL_TIM_Mode_Config(void)
 	//////////////通道3
 	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_2;
 	GPIO_Init(GPIOA,&GPIO_InitStructure);
-	TIM_ICInitStructure.TIM_Channel = TIM_Channel_2;
+	TIM_ICInitStructure.TIM_Channel = TIM_Channel_3;
 	TIM_ICInit(TIM2, &TIM_ICInitStructure);
 	TIM_ClearFlag(GENERAL_TIM,TIM_IT_CC3);
 	TIM_ITConfig (GENERAL_TIM, TIM_IT_CC3 , ENABLE );
@@ -118,7 +113,7 @@ static void GENERAL_TIM_Mode_Config(void)
 	//////////////通道4
 	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_3;
 	GPIO_Init(GPIOA,&GPIO_InitStructure);
-	TIM_ICInitStructure.TIM_Channel = TIM_Channel_3;
+	TIM_ICInitStructure.TIM_Channel = TIM_Channel_4;
 	TIM_ICInit(TIM2, &TIM_ICInitStructure);
 	TIM_ClearFlag(GENERAL_TIM,TIM_IT_CC4);
 	TIM_ITConfig (GENERAL_TIM, TIM_IT_CC4 , ENABLE );

@@ -10,7 +10,7 @@
 #include "led.h"
 #include "bsp_GeneralTim.h" 
 
-void TIM2_CaptureCallBack();
+void TIM2_CaptureCallBack(void);
 typedef struct{
 	uint8_t TIM2_CH1;
 	uint8_t TIM2_CH2;
