@@ -4,15 +4,19 @@ we=flag;
 we=' ';
 OLED_ShowNum(103,6,we,3,16);//显示ASCII字符的码值 
 ****************************************************************************************************/
-
 #include "main.h"
 #include "string.h"
 #define car_length  55 //cm
 #define senor_length  5 //cm
 #define TIAOSHI
 /***********************************声明变量*************************************/
+Flag FlagS={0,0,0,0,0,0,0,0};
+
 extern TIM_ICUserValueTypeDef TIM_ICUserValueStructure1;//传感器1的结构体
 extern TIM_ICUserValueTypeDef TIM_ICUserValueStructure2;//传感器2    
+
+
+/******************显示定义**********************/
 extern USER TIME_SAVE ;
 TIM_ICUserValueTypeDef showOLED;
 USER temp;
@@ -48,7 +52,8 @@ int main(void)
 
 		InitAll();
 				
-		delay_ms(100);
+
+		//delay_ms(100);		
 		
 		
 
@@ -56,12 +61,14 @@ int main(void)
 		while(1) 
 		{	
 			
-			ceshi = GPIO_ReadOutputDataBit(LED1_GPIO_PORT,LED1_GPIO_PIN);
-			LED1_ON;
-			if(time%100000==0){
-					LED1_TOGGLE;
-			}
-			time++;
+			
+			
+//			ceshi = GPIO_ReadOutputDataBit(LED1_GPIO_PORT,LED1_GPIO_PIN);
+//			LED1_ON;
+//			if(time%100000==0){
+//					LED1_TOGGLE;
+//			}
+//			time++;
 //			
 //			if(show_flag == 0){
 //				OLED_Clear(0);
@@ -138,11 +145,105 @@ int main(void)
    	}	  
 }
 
+void TIM2_CaptureCallBack(){
+	// 第一次捕获
+	if(FlagS.TIM2_CH1 == 1)
+	{
+			if ( TIM_ICUserValueStructure1.Capture_StartFlag == 0 && TIME_SAVE.states == 1)
+		{
+			// 计数器清0
+			TIM_SetCounter ( GENERAL_TIM, 0 );
+			// 自动重装载寄存器更新标志清0
+			TIM_ICUserValueStructure1.Capture_Period = 0;
+			// 捕获比较寄存器的值的变量的值清0			
+			TIM_ICUserValueStructure1.Capture_CcrValue = 0;
+						// 自动重装载寄存器更新标志清0
+			TIM_ICUserValueStructure2.Capture_Period = 0;
+			// 捕获比较寄存器的值的变量的值清0			
+			TIM_ICUserValueStructure2.Capture_CcrValue = 0;
+			
+			
+			//第一次捕获到上升沿代表车头第一次遇到传感器1，则下一次需要捕获传感器2的上升沿
+			TIME_SAVE.first_start = 1;//开启第一次捕获过程
+			TIM_OC1PolarityConfig(GENERAL_TIM, TIM_ICPolarity_Falling);
+				
+			// 开始捕获标准置1			
+			TIM_ICUserValueStructure1.Capture_StartFlag = 1;
+			TIME_SAVE.states = 2;
 
+			
+		}else if(TIME_SAVE.first_finishing == 1 && TIME_SAVE.states == 3)
+		{
+			//获取捕获比较寄存器的值，这个值就是捕获到的 第一次传感器上升到第二个传感器下降 间隔高电平的时间的值
+			TIM_ICUserValueStructure1.Capture_CcrValue = TIM_GetCapture1 (GENERAL_TIM);//暂存
+			TIME_SAVE.Interval_time = TIM_ICUserValueStructure1.Capture_Period * (GENERAL_TIM_PERIOD+1) + (TIM_ICUserValueStructure1.Capture_CcrValue+1);
+			
+			// 当第二次捕获到沿之后，就把捕获边沿配置为上升沿，一轮捕获
+			TIM_OC1PolarityConfig(GENERAL_TIM, TIM_ICPolarity_Rising);
+			
+			// 计数器清0
+			TIM_SetCounter ( GENERAL_TIM, 0 );
+			STATE = 1;//使用传感器
+			// 自动重装载寄存器更新标志清0
+			TIM_ICUserValueStructure2.Capture_Period = 0;
+			// 存捕获比较寄存器的值的变量的值清0			
+			TIM_ICUserValueStructure2.Capture_CcrValue = 0;
+			//开启第二次捕获过程
+			TIME_SAVE.second_start = 1;
+			//用传感器2计数第二次过程
+			
+			TIM_ICUserValueStructure2.Capture_StartFlag = 1;
+			TIME_SAVE.states = 4;
+		}
+		
+		FlagS.TIM2_CH1=0;
+	}
+	
+	
+	
+	/**********************************捕获通道二****************************************/
+	// 传感器2捕获
+	if(FlagS.TIM2_CH2 == 1){
+		if ( TIM_ICUserValueStructure2.Capture_StartFlag == 0 && TIME_SAVE.states == 2)
+		{
 
-uint32_t get_capture_Time(void){
-		// TIM 计数器的驱动时钟
-		return showOLED.Capture_Period * (GENERAL_TIM_PERIOD+1) + (showOLED.Capture_CcrValue+1);
+			//获取捕获比较寄存器的值，这个值就是捕获到的第一次高电平的时间的值
+			TIM_ICUserValueStructure1.Capture_CcrValue = TIM_GetCapture1 (GENERAL_TIM);//暂存
+			TIME_SAVE.first_time = TIM_ICUserValueStructure1.Capture_Period * (GENERAL_TIM_PERIOD+1) + 
+			       (TIM_ICUserValueStructure1.Capture_CcrValue+1); //printf ( "\r\n测得高电平脉宽时间：%d.%d s\r\n",time/TIM_PscCLK,time%TIM_PscCLK ); uint32_t TIM_PscCLK = 72000000 / (GENERAL_TIM_PSC+1);
+				
+			//完成第一次
+			TIME_SAVE.first_finishing = 1;
+			TIME_SAVE.first_start = 0  ;
+			TIME_SAVE.states= 3;
+			
+			//通道2捕获准备下降沿
+			TIM_OC2PolarityConfig(GENERAL_TIM, TIM_ICPolarity_Falling);
+				
+					
+		}else if(TIM_ICUserValueStructure2.Capture_StartFlag == 1 && TIME_SAVE.states == 4)
+		{
+			//获取捕获2的比较寄存器的值，这个值就是捕获到的第二次低电平的时间的值
+			TIM_ICUserValueStructure2.Capture_CcrValue = TIM_GetCapture2 (GENERAL_TIM);//暂存
+			TIME_SAVE.second_time = TIM_ICUserValueStructure2.Capture_Period * (GENERAL_TIM_PERIOD+1) + 
+			       (TIM_ICUserValueStructure2.Capture_CcrValue+1); 
+			
+			
+			 //完成第二次
+			TIME_SAVE.second_finishing = 1;
+			TIME_SAVE.second_start = 0  ;
+			TIM_ICUserValueStructure1.Capture_StartFlag = 0;
+			TIM_ICUserValueStructure2.Capture_StartFlag = 0;
+			TIME_SAVE.states = 1;
+			STATE = 0 ;
+			
+				//通道2捕获准备上降沿
+			TIM_OC2PolarityConfig(GENERAL_TIM, TIM_ICPolarity_Rising);
+		}
+		
+		FlagS.TIM2_CH2 = 0;
+	}
+	
 	
 }
 

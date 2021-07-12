@@ -338,7 +338,7 @@
               <MiscControls></MiscControls>
               <Define>STM32F10X_HD,USE_STDPERIPH_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath>..\User;..\System\manage;..\Libraries\CMSIS;..\Libraries\CMSIS\startup;..\Libraries\FWlib\inc;..\Libraries\FWlib\src;..\User\GeneralTim;..\User\LED;..\User\speedtext;..\User\usart</IncludePath>
+              <IncludePath>..\User;..\System\manage;..\Libraries\CMSIS;..\Libraries\CMSIS\startup;..\Libraries\FWlib\inc;..\Libraries\FWlib\src;..\System\delay;..\System\sys;..\System\usart;..\User\GeneralTim;..\User\LED;..\User\speedtext;..\User\tim;..\User\usart</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -398,14 +398,9 @@
               <FilePath>..\User\stm32f10x_conf.h</FilePath>
             </File>
             <File>
-              <FileName>bsp_usart.c</FileName>
+              <FileName>bsp_GeneralTim.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\User\usart\bsp_usart.c</FilePath>
-            </File>
-            <File>
-              <FileName>speedtext.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\User\speedtext\speedtext.c</FilePath>
+              <FilePath>..\User\GeneralTim\bsp_GeneralTim.c</FilePath>
             </File>
             <File>
               <FileName>led.c</FileName>
@@ -413,21 +408,19 @@
               <FilePath>..\User\LED\led.c</FilePath>
             </File>
             <File>
-              <FileName>bsp_GeneralTim.c</FileName>
+              <FileName>speedtext.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\User\GeneralTim\bsp_GeneralTim.c</FilePath>
+              <FilePath>..\User\speedtext\speedtext.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_usart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\User\usart\bsp_usart.c</FilePath>
             </File>
           </Files>
         </Group>
         <Group>
           <GroupName>SYSTEM</GroupName>
-          <Files>
-            <File>
-              <FileName>manage_f103.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\System\manage\manage_f103.c</FilePath>
-            </File>
-          </Files>
         </Group>
         <Group>
           <GroupName>HARDWARE</GroupName>

@@ -14,11 +14,9 @@
 .\output\led.o: ..\Libraries\FWlib\inc\stm32f10x_usart.h
 .\output\led.o: ..\Libraries\FWlib\inc\misc.h
 .\output\led.o: ..\Libraries\FWlib\inc\stm32f10x_tim.h
-.\output\led.o: ..\System\manage\manage_f103.h
+.\output\led.o: ..\System\delay\delay.h
+.\output\led.o: ..\System\sys\sys.h
 .\output\led.o: D:\keilFile\ARM\ARMCC\Bin\..\include\stdio.h
-.\output\led.o: D:\keilFile\ARM\ARMCC\Bin\..\include\stdlib.h
-.\output\led.o: D:\keilFile\ARM\ARMCC\Bin\..\include\stdbool.h
-.\output\led.o: D:\keilFile\ARM\ARMCC\Bin\..\include\string.h
 .\output\led.o: ..\User\speedtext\speedtext.h
 .\output\led.o: ..\User\main.h
 .\output\led.o: ..\User\LED\led.h

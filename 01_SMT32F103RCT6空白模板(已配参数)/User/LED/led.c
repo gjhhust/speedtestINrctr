@@ -56,7 +56,7 @@ u8 Key_Scan(GPIO_TypeDef* GPIOx,u16 GPIO_Pin)
 	if(GPIO_ReadInputDataBit(GPIOx,GPIO_Pin) == KEY_ON )
 		{ 
 			/*延时消抖*/ 
-			delay_ms(10000);
+			//delay_ms(10000);
 			if(GPIO_ReadInputDataBit(GPIOx,GPIO_Pin) == KEY_ON ) 
 				{ 
 					/*等待按键释放 */ 

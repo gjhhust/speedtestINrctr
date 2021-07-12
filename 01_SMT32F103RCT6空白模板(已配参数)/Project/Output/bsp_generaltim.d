@@ -14,11 +14,9 @@
 .\output\bsp_generaltim.o: ..\Libraries\FWlib\inc\stm32f10x_usart.h
 .\output\bsp_generaltim.o: ..\Libraries\FWlib\inc\misc.h
 .\output\bsp_generaltim.o: ..\Libraries\FWlib\inc\stm32f10x_tim.h
-.\output\bsp_generaltim.o: ..\System\manage\manage_f103.h
+.\output\bsp_generaltim.o: ..\System\delay\delay.h
+.\output\bsp_generaltim.o: ..\System\sys\sys.h
 .\output\bsp_generaltim.o: D:\keilFile\ARM\ARMCC\Bin\..\include\stdio.h
-.\output\bsp_generaltim.o: D:\keilFile\ARM\ARMCC\Bin\..\include\stdlib.h
-.\output\bsp_generaltim.o: D:\keilFile\ARM\ARMCC\Bin\..\include\stdbool.h
-.\output\bsp_generaltim.o: D:\keilFile\ARM\ARMCC\Bin\..\include\string.h
 .\output\bsp_generaltim.o: ..\User\speedtext\speedtext.h
 .\output\bsp_generaltim.o: ..\User\main.h
 .\output\bsp_generaltim.o: ..\User\LED\led.h
