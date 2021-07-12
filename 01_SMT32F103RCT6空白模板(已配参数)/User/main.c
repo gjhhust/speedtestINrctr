@@ -61,22 +61,6 @@ int main(void)
 		while(1) 
 		{	
 			
-			
-			
-//			ceshi = GPIO_ReadOutputDataBit(LED1_GPIO_PORT,LED1_GPIO_PIN);
-//			LED1_ON;
-//			if(time%100000==0){
-//					LED1_TOGGLE;
-//			}
-//			time++;
-//			
-//			if(show_flag == 0){
-//				OLED_Clear(0);
-//				OLED_ShowString(6,3,"loading.....",16);
-//			//如果记录完一次保存到temp里面
-//			}	
-			
-			
 
 			if(TIME_SAVE.first_finishing == 1){
 				temp = TIME_SAVE;
@@ -89,7 +73,7 @@ int main(void)
 				temp.first_time/=TIM_PscCLK;
 				second=temp.second_time/TIM_PscCLK;
 				temp.second_time/=TIM_PscCLK;
-				Inval=temp.Interval_time/=TIM_PscCLK;
+				Inval=temp.Interval_time12/=TIM_PscCLK;
 				TIME_SAVE.first_finishing=0;
 				TIME_SAVE.second_finishing=0;
 				
@@ -164,7 +148,6 @@ void TIM2_CaptureCallBack(){
 			
 			
 			//第一次捕获到上升沿代表车头第一次遇到传感器1，则下一次需要捕获传感器2的上升沿
-			TIME_SAVE.first_start = 1;//开启第一次捕获过程
 			TIM_OC1PolarityConfig(GENERAL_TIM, TIM_ICPolarity_Falling);
 				
 			// 开始捕获标准置1			
@@ -176,7 +159,7 @@ void TIM2_CaptureCallBack(){
 		{
 			//获取捕获比较寄存器的值，这个值就是捕获到的 第一次传感器上升到第二个传感器下降 间隔高电平的时间的值
 			TIM_ICUserValueStructure1.Capture_CcrValue = TIM_GetCapture1 (GENERAL_TIM);//暂存
-			TIME_SAVE.Interval_time = TIM_ICUserValueStructure1.Capture_Period * (GENERAL_TIM_PERIOD+1) + (TIM_ICUserValueStructure1.Capture_CcrValue+1);
+			TIME_SAVE.Interval_time12 = TIM_ICUserValueStructure1.Capture_Period * (GENERAL_TIM_PERIOD+1) + (TIM_ICUserValueStructure1.Capture_CcrValue+1);
 			
 			// 当第二次捕获到沿之后，就把捕获边沿配置为上升沿，一轮捕获
 			TIM_OC1PolarityConfig(GENERAL_TIM, TIM_ICPolarity_Rising);
@@ -188,8 +171,7 @@ void TIM2_CaptureCallBack(){
 			TIM_ICUserValueStructure2.Capture_Period = 0;
 			// 存捕获比较寄存器的值的变量的值清0			
 			TIM_ICUserValueStructure2.Capture_CcrValue = 0;
-			//开启第二次捕获过程
-			TIME_SAVE.second_start = 1;
+
 			//用传感器2计数第二次过程
 			
 			TIM_ICUserValueStructure2.Capture_StartFlag = 1;
@@ -197,6 +179,7 @@ void TIM2_CaptureCallBack(){
 		}
 		
 		FlagS.TIM2_CH1=0;
+		
 	}
 	
 	
@@ -214,7 +197,6 @@ void TIM2_CaptureCallBack(){
 				
 			//完成第一次
 			TIME_SAVE.first_finishing = 1;
-			TIME_SAVE.first_start = 0  ;
 			TIME_SAVE.states= 3;
 			
 			//通道2捕获准备下降沿
@@ -231,7 +213,6 @@ void TIM2_CaptureCallBack(){
 			
 			 //完成第二次
 			TIME_SAVE.second_finishing = 1;
-			TIME_SAVE.second_start = 0  ;
 			TIM_ICUserValueStructure1.Capture_StartFlag = 0;
 			TIM_ICUserValueStructure2.Capture_StartFlag = 0;
 			TIME_SAVE.states = 1;
@@ -242,6 +223,7 @@ void TIM2_CaptureCallBack(){
 		}
 		
 		FlagS.TIM2_CH2 = 0;
+		TIM_ClearITPendingBit (GENERAL_TIM,TIM_IT_CC2);
 	}
 	
 	

@@ -1,6 +1,6 @@
 #include "speedtext.h"
 extern int time;
-USER TIME_SAVE = {0,0,0,0,0,1};//保存两次捕获时间
+USER TIME_SAVE = {0,0,0,0,0,0,0,1};//保存两次捕获时间
 
 /**********************************************************************************************************
 *函 数 名: 相关初始化函数
@@ -15,7 +15,7 @@ void InitAll(void){
 
 	
 	GENERAL_TIM_Init();//初始化定时器并开始计时；
-	
+//	
 //OLED_Init();			//初始化OLED 
 	
 	LED_GPIO_Config();
