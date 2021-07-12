@@ -1,6 +1,6 @@
 Dependencies for Project 'Ä§Å®¿ª·¢°å_STM32F103RCT6', Target 'STM32F103RC': (DO NOT MODIFY !)
 CompilerVersion: 5060750::V5.06 update 6 (build 750)::ARMCC
-F (..\User\main.c)(0x60EC415A)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I ..\User -I ..\System\manage -I ..\Libraries\CMSIS -I ..\Libraries\CMSIS\startup -I ..\Libraries\FWlib\inc -I ..\Libraries\FWlib\src -I ..\System\delay -I ..\System\sys -I ..\System\usart -I ..\User\GeneralTim -I ..\User\LED -I ..\User\speedtext -I ..\User\tim -I ..\User\usart-I.\RTE\_STM32F103RC-ID:\keilFile\ARM\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\Include-ID:\keilFile\ARM\CMSIS\Include-D__UVISION_VERSION="529" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o .\output\main.o --omf_browse .\output\main.crf --depend .\output\main.d)
+F (..\User\main.c)(0x60EC68DC)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I ..\User -I ..\System\manage -I ..\Libraries\CMSIS -I ..\Libraries\CMSIS\startup -I ..\Libraries\FWlib\inc -I ..\Libraries\FWlib\src -I ..\System\delay -I ..\System\sys -I ..\System\usart -I ..\User\GeneralTim -I ..\User\LED -I ..\User\speedtext -I ..\User\tim -I ..\User\usart-I.\RTE\_STM32F103RC-ID:\keilFile\ARM\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\Include-ID:\keilFile\ARM\CMSIS\Include-D__UVISION_VERSION="529" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o .\output\main.o --omf_browse .\output\main.crf --depend .\output\main.d)
 I (..\User\main.h)(0x60EC415A)
 I (..\Libraries\CMSIS\stm32f10x.h)(0x604C9357)
 I (..\Libraries\CMSIS\core_cm3.h)(0x604C9354)
@@ -83,7 +83,7 @@ I (..\System\sys\sys.h)(0x60EC051E)
 I (D:\keilFile\ARM\ARMCC\include\stdio.h)(0x5D9AD21A)
 I (..\User\speedtext\speedtext.h)(0x60EC40D1)
 I (..\User\GeneralTim\bsp_GeneralTim.h)(0x60E47DAB)
-F (..\User\speedtext\speedtext.c)(0x60EC416B)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I ..\User -I ..\System\manage -I ..\Libraries\CMSIS -I ..\Libraries\CMSIS\startup -I ..\Libraries\FWlib\inc -I ..\Libraries\FWlib\src -I ..\System\delay -I ..\System\sys -I ..\System\usart -I ..\User\GeneralTim -I ..\User\LED -I ..\User\speedtext -I ..\User\tim -I ..\User\usart-I.\RTE\_STM32F103RC-ID:\keilFile\ARM\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\Include-ID:\keilFile\ARM\CMSIS\Include-D__UVISION_VERSION="529" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o .\output\speedtext.o --omf_browse .\output\speedtext.crf --depend .\output\speedtext.d)
+F (..\User\speedtext\speedtext.c)(0x60EC541C)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I ..\User -I ..\System\manage -I ..\Libraries\CMSIS -I ..\Libraries\CMSIS\startup -I ..\Libraries\FWlib\inc -I ..\Libraries\FWlib\src -I ..\System\delay -I ..\System\sys -I ..\System\usart -I ..\User\GeneralTim -I ..\User\LED -I ..\User\speedtext -I ..\User\tim -I ..\User\usart-I.\RTE\_STM32F103RC-ID:\keilFile\ARM\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\Include-ID:\keilFile\ARM\CMSIS\Include-D__UVISION_VERSION="529" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o .\output\speedtext.o --omf_browse .\output\speedtext.crf --depend .\output\speedtext.d)
 I (..\User\speedtext\speedtext.h)(0x60EC40D1)
 I (..\User\main.h)(0x60EC415A)
 I (..\Libraries\CMSIS\stm32f10x.h)(0x604C9357)

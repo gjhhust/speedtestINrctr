@@ -165,18 +165,17 @@ void TIM2_CaptureCallBack(void){
 			// 当第二次捕获到沿之后，就把捕获边沿配置为上升沿，一轮捕获
 			TIM_OC1PolarityConfig(GENERAL_TIM, TIM_ICPolarity_Rising);
 			
-			// 计数器清0
-			TIM_SetCounter ( GENERAL_TIM, 0 );
-			STATE_USE = 1;//使用传感器
-			// 自动重装载寄存器更新标志清0
-			TIM_ICUserValueStructure2.Capture_Period = 0;
-			// 存捕获比较寄存器的值的变量的值清0			
-			TIM_ICUserValueStructure2.Capture_CcrValue = 0;
+//			// 计数器清0
+//			TIM_SetCounter ( GENERAL_TIM, 0 );
+//			//STATE_USE = 1;//使用传感器
+//			// 自动重装载寄存器更新标志清0
+//			TIM_ICUserValueStructure1.Capture_Period = 0;
+//			// 存捕获比较寄存器的值的变量的值清0			
+//			TIM_ICUserValueStructure1.Capture_CcrValue = 0;
 
 			//用传感器2计数第二次过程
-			
-			TIM_ICUserValueStructure1.Capture_StartFlag = 0;
-			TIM_ICUserValueStructure2.Capture_StartFlag = 1;
+			TIM_OC2PolarityConfig(GENERAL_TIM, TIM_ICPolarity_Falling);
+
 			TIME_SAVE.states = 6;
 		}
 		
@@ -193,7 +192,7 @@ void TIM2_CaptureCallBack(void){
 		{
 
 			//获取捕获比较寄存器的值，这个值就是捕获到的第一次高电平的时间的值
-			TIM_ICUserValueStructure1.Capture_CcrValue = TIM_GetCapture1 (GENERAL_TIM);//暂存
+			TIM_ICUserValueStructure1.Capture_CcrValue = TIM_GetCapture2 (GENERAL_TIM);//暂存
 			TIME_SAVE.first_time = TIM_ICUserValueStructure1.Capture_Period * (GENERAL_TIM_PERIOD+1) + 
 			       (TIM_ICUserValueStructure1.Capture_CcrValue+1); //printf ( "\r\n测得高电平脉宽时间：%d.%d s\r\n",time/TIM_PscCLK,time%TIM_PscCLK ); uint32_t TIM_PscCLK = 72000000 / (GENERAL_TIM_PSC+1);
 				
@@ -205,18 +204,18 @@ void TIM2_CaptureCallBack(void){
 			TIM_OC2PolarityConfig(GENERAL_TIM, TIM_ICPolarity_Falling);
 				
 					
-		}else if(TIM_ICUserValueStructure2.Capture_StartFlag == 1 && TIME_SAVE.states == 6)
+		}else if( TIME_SAVE.states == 6)
 		{
 			//获取捕获2的比较寄存器的值，这个值就是捕获到的第二次低电平的时间的值
-			TIM_ICUserValueStructure2.Capture_CcrValue = TIM_GetCapture2 (GENERAL_TIM);//暂存
-			TIME_SAVE.forth_finishing = TIM_ICUserValueStructure2.Capture_Period * (GENERAL_TIM_PERIOD+1) + 
-			       (TIM_ICUserValueStructure2.Capture_CcrValue+1); 
+			TIM_ICUserValueStructure1.Capture_CcrValue = TIM_GetCapture2 (GENERAL_TIM);//暂存
+			TIME_SAVE.forth_time = TIM_ICUserValueStructure1.Capture_Period * (GENERAL_TIM_PERIOD+1) + 
+			       (TIM_ICUserValueStructure1.Capture_CcrValue+1); 
 			
-			
+			TIME_SAVE.forth_time = TIME_SAVE.forth_time -  TIME_SAVE.Interval_time;
 			 //完成第二次
 			TIME_SAVE.forth_finishing = 1;
 			TIM_ICUserValueStructure1.Capture_StartFlag = 0;
-			TIM_ICUserValueStructure2.Capture_StartFlag = 0;
+			//TIM_ICUserValueStructure2.Capture_StartFlag = 0;
 			TIME_SAVE.states = 1;
 			
 			STATE_USE = 0 ;
