@@ -1,0 +1,16 @@
+..\obj\main.o: main.c
+..\obj\main.o: main.h
+..\obj\main.o: stm32f10x.h
+..\obj\main.o: ..\CORE\core_cm3.h
+..\obj\main.o: D:\keilFile\ARM\ARMCC\Bin\..\include\stdint.h
+..\obj\main.o: system_stm32f10x.h
+..\obj\main.o: ..\STM32F10x_FWLib\inc\stm32f10x_tim.h
+..\obj\main.o: ..\SYSTEM\delay\delay.h
+..\obj\main.o: ..\SYSTEM\sys\sys.h
+..\obj\main.o: ..\HARDWARE\OLED\oled.h
+..\obj\main.o: D:\keilFile\ARM\ARMCC\Bin\..\include\stdlib.h
+..\obj\main.o: .\speedtext\speedtext.h
+..\obj\main.o: ..\USER\main.h
+..\obj\main.o: .\LED\led.h
+..\obj\main.o: .\GeneralTim\bsp_GeneralTim.h
+..\obj\main.o: D:\keilFile\ARM\ARMCC\Bin\..\include\string.h

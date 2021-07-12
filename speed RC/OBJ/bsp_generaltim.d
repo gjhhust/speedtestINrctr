@@ -1,0 +1,16 @@
+..\obj\bsp_generaltim.o: GeneralTim\bsp_GeneralTim.c
+..\obj\bsp_generaltim.o: GeneralTim\bsp_GeneralTim.h
+..\obj\bsp_generaltim.o: ..\USER\main.h
+..\obj\bsp_generaltim.o: ..\USER\stm32f10x.h
+..\obj\bsp_generaltim.o: ..\CORE\core_cm3.h
+..\obj\bsp_generaltim.o: D:\keilFile\ARM\ARMCC\Bin\..\include\stdint.h
+..\obj\bsp_generaltim.o: ..\USER\system_stm32f10x.h
+..\obj\bsp_generaltim.o: ..\STM32F10x_FWLib\inc\stm32f10x_tim.h
+..\obj\bsp_generaltim.o: ..\SYSTEM\delay\delay.h
+..\obj\bsp_generaltim.o: ..\SYSTEM\sys\sys.h
+..\obj\bsp_generaltim.o: ..\HARDWARE\OLED\oled.h
+..\obj\bsp_generaltim.o: D:\keilFile\ARM\ARMCC\Bin\..\include\stdlib.h
+..\obj\bsp_generaltim.o: .\speedtext\speedtext.h
+..\obj\bsp_generaltim.o: ..\USER\main.h
+..\obj\bsp_generaltim.o: .\LED\led.h
+..\obj\bsp_generaltim.o: .\GeneralTim\bsp_GeneralTim.h

@@ -1,0 +1,275 @@
+<html>
+<body>
+<pre>
+<h1>礦ision Build Log</h1>
+<h2>Tool Versions:</h2>
+IDE-Version: μVision V5.29.0.0
+Copyright (C) 2019 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: 123 LanLanL, HP Inc., LIC=YA39H-W2LZ6-EVQ1R-KQZER-GG99Y-PX7VD
+ 
+Tool Versions:
+Toolchain:       MDK-ARM Plus  Version: 5.29.0.0
+Toolchain Path:  D:\keilFile\ARM\ARMCC\Bin
+C Compiler:      Armcc.exe V5.06 update 6 (build 750)
+Assembler:       Armasm.exe V5.06 update 6 (build 750)
+Linker/Locator:  ArmLink.exe V5.06 update 6 (build 750)
+Library Manager: ArmAr.exe V5.06 update 6 (build 750)
+Hex Converter:   FromElf.exe V5.06 update 6 (build 750)
+CPU DLL:         SARMCM3.DLL V5.29.0.0
+Dialog DLL:      DCM.DLL V1.17.3.0
+Target DLL:      CMSIS_AGDI.dll V1.32.0.0
+Dialog DLL:      TCM.DLL V1.36.5.0
+ 
+<h2>Project:</h2>
+C:\Users\LanLanLan1927\Desktop\TIM2_cubetest\STM32speedtext\USER\OLED.uvprojx
+Project File Date:  07/12/2021
+
+<h2>Output:</h2>
+*** Using Compiler 'V5.06 update 6 (build 750)', folder: 'D:\keilFile\ARM\ARMCC\Bin'
+Build target 'QD-OLED'
+assembling startup_stm32f103xe.s...
+compiling sys.c...
+..\SYSTEM\sys\sys.c(6): warning:  #223-D: function "NVIC_PriorityGroupConfig" declared implicitly
+      NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);	//设置NVIC中断分组2:2位抢占优先级，2位响应优先级
+..\SYSTEM\sys\sys.c(6): error:  #20: identifier "NVIC_PriorityGroup_2" is undefined
+      NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);	//设置NVIC中断分组2:2位抢占优先级，2位响应优先级
+..\SYSTEM\sys\sys.c: 1 warning, 1 error
+compiling oled.c...
+..\HARDWARE\OLED\oled.c(48): warning:  #223-D: function "GPIO_SetBits" declared implicitly
+  	OLED_SCLK_Set() ;
+..\HARDWARE\OLED\oled.c(48): error:  #20: identifier "GPIO_Pin_6" is undefined
+  	OLED_SCLK_Set() ;
+..\HARDWARE\OLED\oled.c(49): error:  #20: identifier "GPIO_Pin_7" is undefined
+  	OLED_SDIN_Set();
+..\HARDWARE\OLED\oled.c(50): warning:  #223-D: function "GPIO_ResetBits" declared implicitly
+  	OLED_SDIN_Clr();
+..\HARDWARE\OLED\oled.c(59): warning:  #223-D: function "GPIO_SetBits" declared implicitly
+  OLED_SCLK_Set() ;
+..\HARDWARE\OLED\oled.c(59): error:  #20: identifier "GPIO_Pin_6" is undefined
+  OLED_SCLK_Set() ;
+..\HARDWARE\OLED\oled.c(61): warning:  #223-D: function "GPIO_ResetBits" declared implicitly
+  	OLED_SDIN_Clr();
+..\HARDWARE\OLED\oled.c(61): error:  #20: identifier "GPIO_Pin_7" is undefined
+  	OLED_SDIN_Clr();
+..\HARDWARE\OLED\oled.c(85): warning:  #223-D: function "GPIO_SetBits" declared implicitly
+  	OLED_SCLK_Set() ;
+..\HARDWARE\OLED\oled.c(85): error:  #20: identifier "GPIO_Pin_6" is undefined
+  	OLED_SCLK_Set() ;
+..\HARDWARE\OLED\oled.c(86): warning:  #223-D: function "GPIO_ResetBits" declared implicitly
+  	OLED_SCLK_Clr();
+..\HARDWARE\OLED\oled.c(97): warning:  #223-D: function "GPIO_ResetBits" declared implicitly
+  	OLED_SCLK_Clr();
+..\HARDWARE\OLED\oled.c(97): error:  #20: identifier "GPIO_Pin_6" is undefined
+  	OLED_SCLK_Clr();
+..\HARDWARE\OLED\oled.c(104): warning:  #223-D: function "GPIO_SetBits" declared implicitly
+  		{OLED_SDIN_Set();}
+..\HARDWARE\OLED\oled.c(104): error:  #20: identifier "GPIO_Pin_7" is undefined
+  		{OLED_SDIN_Set();}
+..\HARDWARE\OLED\oled.c(105): error:  #20: identifier "GPIO_Pin_7" is undefined
+  		else OLED_SDIN_Clr();
+..\HARDWARE\OLED\oled.c(107): warning:  #223-D: function "GPIO_SetBits" declared implicitly
+  		OLED_SCLK_Set();
+..\HARDWARE\OLED\oled.c(345): error:  #20: identifier "GPIO_InitTypeDef" is undefined
+  	GPIO_InitTypeDef  GPIO_InitStructure;
+..\HARDWARE\OLED\oled.c(351): warning:  #223-D: function "RCC_APB2PeriphClockCmd" declared implicitly
+   	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB, ENABLE);	 //使能B端口时钟
+..\HARDWARE\OLED\oled.c(351): error:  #20: identifier "RCC_APB2Periph_GPIOB" is undefined
+   	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB, ENABLE);	 //使能B端口时钟
+..\HARDWARE\OLED\oled.c(352): error:  #20: identifier "GPIO_Pin_6" is undefined
+  	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_6|GPIO_Pin_7;	 
+..\HARDWARE\OLED\oled.c(352): error:  #20: identifier "GPIO_Pin_7" is undefined
+  	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_6|GPIO_Pin_7;	 
+..\HARDWARE\OLED\oled.c(353): error:  #20: identifier "GPIO_Mode_Out_PP" is undefined
+   	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP; 		 //推挽输出
+..\HARDWARE\OLED\oled.c(354): error:  #20: identifier "GPIO_Speed_50MHz" is undefined
+  	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;//速度50MHz
+..\HARDWARE\OLED\oled.c(355): warning:  #223-D: function "GPIO_Init" declared implicitly
+   	GPIO_Init(GPIOB, &GPIO_InitStructure);	  //初始化GPIOB3,4
+..\HARDWARE\OLED\oled.c(356): warning:  #223-D: function "GPIO_SetBits" declared implicitly
+   	GPIO_SetBits(GPIOB,GPIO_Pin_6|GPIO_Pin_7);		
+..\HARDWARE\OLED\oled.c: 12 warnings, 14 errors
+compiling delay.c...
+..\SYSTEM\delay\delay.c(31): warning:  #223-D: function "SysTick_CLKSourceConfig" declared implicitly
+  	SysTick_CLKSourceConfig(SysTick_CLKSource_HCLK_Div8);	//选择外部时钟  HCLK/8
+..\SYSTEM\delay\delay.c(31): error:  #20: identifier "SysTick_CLKSource_HCLK_Div8" is undefined
+  	SysTick_CLKSourceConfig(SysTick_CLKSource_HCLK_Div8);	//选择外部时钟  HCLK/8
+..\SYSTEM\delay\delay.c: 1 warning, 1 error
+compiling usart.c...
+..\SYSTEM\usart\usart.c(65): error:  #20: identifier "GPIO_InitTypeDef" is undefined
+      GPIO_InitTypeDef GPIO_InitStructure;
+..\SYSTEM\usart\usart.c(66): error:  #20: identifier "USART_InitTypeDef" is undefined
+  	USART_InitTypeDef USART_InitStructure;
+..\SYSTEM\usart\usart.c(67): error:  #20: identifier "NVIC_InitTypeDef" is undefined
+  	NVIC_InitTypeDef NVIC_InitStructure;
+..\SYSTEM\usart\usart.c(69): warning:  #223-D: function "RCC_APB2PeriphClockCmd" declared implicitly
+  	RCC_APB2PeriphClockCmd(RCC_APB2Periph_USART1|RCC_APB2Periph_GPIOA|RCC_APB2Periph_AFIO, ENABLE);	//使能USART1，GPIOA时钟以及复用功能时钟
+..\SYSTEM\usart\usart.c(69): error:  #20: identifier "RCC_APB2Periph_USART1" is undefined
+  	RCC_APB2PeriphClockCmd(RCC_APB2Periph_USART1|RCC_APB2Periph_GPIOA|RCC_APB2Periph_AFIO, ENABLE);	//使能USART1，GPIOA时钟以及复用功能时钟
+..\SYSTEM\usart\usart.c(69): error:  #20: identifier "RCC_APB2Periph_GPIOA" is undefined
+  	RCC_APB2PeriphClockCmd(RCC_APB2Periph_USART1|RCC_APB2Periph_GPIOA|RCC_APB2Periph_AFIO, ENABLE);	//使能USART1，GPIOA时钟以及复用功能时钟
+..\SYSTEM\usart\usart.c(69): error:  #20: identifier "RCC_APB2Periph_AFIO" is undefined
+  	RCC_APB2PeriphClockCmd(RCC_APB2Periph_USART1|RCC_APB2Periph_GPIOA|RCC_APB2Periph_AFIO, ENABLE);	//使能USART1，GPIOA时钟以及复用功能时钟
+..\SYSTEM\usart\usart.c(71): error:  #20: identifier "GPIO_Pin_9" is undefined
+      GPIO_InitStructure.GPIO_Pin = GPIO_Pin_9; //PA.9
+..\SYSTEM\usart\usart.c(72): error:  #20: identifier "GPIO_Speed_50MHz" is undefined
+      GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+..\SYSTEM\usart\usart.c(73): error:  #20: identifier "GPIO_Mode_AF_PP" is undefined
+      GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP;	//复用推挽输出
+..\SYSTEM\usart\usart.c(74): warning:  #223-D: function "GPIO_Init" declared implicitly
+      GPIO_Init(GPIOA, &GPIO_InitStructure);
+..\SYSTEM\usart\usart.c(77): error:  #20: identifier "GPIO_Pin_10" is undefined
+      GPIO_InitStructure.GPIO_Pin = GPIO_Pin_10;
+..\SYSTEM\usart\usart.c(78): error:  #20: identifier "GPIO_Mode_IN_FLOATING" is undefined
+      GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;//浮空输入
+..\SYSTEM\usart\usart.c(87): warning:  #223-D: function "NVIC_Init" declared implicitly
+  	NVIC_Init(&NVIC_InitStructure);	//根据指定的参数初始化VIC寄存器
+..\SYSTEM\usart\usart.c(92): error:  #20: identifier "USART_WordLength_8b" is undefined
+  	USART_InitStructure.USART_WordLength = USART_WordLength_8b;//字长为8位数据格式
+..\SYSTEM\usart\usart.c(93): error:  #20: identifier "USART_StopBits_1" is undefined
+  	USART_InitStructure.USART_StopBits = USART_StopBits_1;//一个停止位
+..\SYSTEM\usart\usart.c(94): error:  #20: identifier "USART_Parity_No" is undefined
+  	USART_InitStructure.USART_Parity = USART_Parity_No;//无奇偶校验位
+..\SYSTEM\usart\usart.c(95): error:  #20: identifier "USART_HardwareFlowControl_None" is undefined
+  	USART_InitStructure.USART_HardwareFlowControl = USART_HardwareFlowControl_None;//无硬件数据流控制
+..\SYSTEM\usart\usart.c(96): error:  #20: identifier "USART_Mode_Rx" is undefined
+  	USART_InitStructure.USART_Mode = USART_Mode_Rx | USART_Mode_Tx;	//收发模式
+..\SYSTEM\usart\usart.c(96): error:  #20: identifier "USART_Mode_Tx" is undefined
+  	USART_InitStructure.USART_Mode = USART_Mode_Rx | USART_Mode_Tx;	//收发模式
+..\SYSTEM\usart\usart.c(98): warning:  #223-D: function "USART_Init" declared implicitly
+      USART_Init(USART1, &USART_InitStructure); //初始化串口
+..\SYSTEM\usart\usart.c(99): warning:  #223-D: function "USART_ITConfig" declared implicitly
+      USART_ITConfig(USART1, USART_IT_RXNE, ENABLE);//开启中断
+..\SYSTEM\usart\usart.c(99): error:  #20: identifier "USART_IT_RXNE" is undefined
+      USART_ITConfig(USART1, USART_IT_RXNE, ENABLE);//开启中断
+..\SYSTEM\usart\usart.c(100): warning:  #223-D: function "USART_Cmd" declared implicitly
+      USART_Cmd(USART1, ENABLE);                    //使能串口 
+..\SYSTEM\usart\usart.c(110): warning:  #223-D: function "USART_GetITStatus" declared implicitly
+  	if(USART_GetITStatus(USART1, USART_IT_RXNE) != RESET)  //接收中断(接收到的数据必须是0x0d 0x0a结尾)
+..\SYSTEM\usart\usart.c(110): error:  #20: identifier "USART_IT_RXNE" is undefined
+  	if(USART_GetITStatus(USART1, USART_IT_RXNE) != RESET)  //接收中断(接收到的数据必须是0x0d 0x0a结尾)
+..\SYSTEM\usart\usart.c(112): warning:  #223-D: function "USART_ReceiveData" declared implicitly
+  		Res =USART_ReceiveData(USART1);//(USART1->DR);	//读取接收到的数据
+..\SYSTEM\usart\usart.c: 8 warnings, 19 errors
+compiling bsp_GeneralTim.c...
+..\USER\main.h(18): warning:  #1-D: last line of file ends without a newline
+  #endif
+.\speedtext\speedtext.h(37): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\USER\main.h(18): warning:  #1-D: last line of file ends without a newline
+  #endif
+GeneralTim\bsp_GeneralTim.c(13): error:  #20: identifier "NVIC_InitTypeDef" is undefined
+      NVIC_InitTypeDef NVIC_InitStructure; 
+GeneralTim\bsp_GeneralTim.c(15): warning:  #223-D: function "NVIC_PriorityGroupConfig" declared implicitly
+      NVIC_PriorityGroupConfig(NVIC_PriorityGroup_0);		
+GeneralTim\bsp_GeneralTim.c(15): error:  #20: identifier "NVIC_PriorityGroup_0" is undefined
+      NVIC_PriorityGroupConfig(NVIC_PriorityGroup_0);		
+GeneralTim\bsp_GeneralTim.c(23): warning:  #223-D: function "NVIC_Init" declared implicitly
+      NVIC_Init(&NVIC_InitStructure);
+GeneralTim\bsp_GeneralTim.c(54): error:  #20: identifier "GPIO_InitTypeDef" is undefined
+  	GPIO_InitTypeDef GPIO_InitStructure;
+GeneralTim\bsp_GeneralTim.c(58): warning:  #223-D: function "RCC_APB1PeriphClockCmd" declared implicitly
+  	GENERAL_TIM_APBxClock_FUN(GENERAL_TIM_CLK,ENABLE);
+GeneralTim\bsp_GeneralTim.c(58): error:  #20: identifier "RCC_APB1Periph_TIM2" is undefined
+  	GENERAL_TIM_APBxClock_FUN(GENERAL_TIM_CLK,ENABLE);
+GeneralTim\bsp_GeneralTim.c(88): warning:  #223-D: function "RCC_APB2PeriphClockCmd" declared implicitly
+  	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA, ENABLE);
+GeneralTim\bsp_GeneralTim.c(88): error:  #20: identifier "RCC_APB2Periph_GPIOA" is undefined
+  	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA, ENABLE);
+GeneralTim\bsp_GeneralTim.c(89): error:  #20: identifier "GPIO_Mode_IN_FLOATING" is undefined
+  	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;
+GeneralTim\bsp_GeneralTim.c(91): error:  #20: identifier "GPIO_Pin_0" is undefined
+  	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0;
+GeneralTim\bsp_GeneralTim.c(92): warning:  #223-D: function "GPIO_Init" declared implicitly
+  	GPIO_Init(GPIOA,&GPIO_InitStructure);
+GeneralTim\bsp_GeneralTim.c(98): error:  #20: identifier "GPIO_Pin_1" is undefined
+  	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_1;
+GeneralTim\bsp_GeneralTim.c: 8 warnings, 8 errors
+compiling speedtext.c...
+.\speedtext\speedtext.h(37): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\USER\main.h(18): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\USER\main.h(18): warning:  #1-D: last line of file ends without a newline
+  #endif
+speedtext\speedtext.h(37): warning:  #1-D: last line of file ends without a newline
+  #endif
+speedtext\speedtext.c(33): error:  #20: identifier "GPIO_InitTypeDef" is undefined
+  	 GPIO_InitTypeDef GPIO_InitStructure;
+speedtext\speedtext.c(36): warning:  #223-D: function "RCC_APB2PeriphClockCmd" declared implicitly
+  		RCC_APB2PeriphClockCmd(RCC_APB2Periph_NEED, ENABLE);
+speedtext\speedtext.c(36): error:  #20: identifier "RCC_APB2Periph_GPIOA" is undefined
+  		RCC_APB2PeriphClockCmd(RCC_APB2Periph_NEED, ENABLE);
+speedtext\speedtext.c(39): error:  #20: identifier "GPIO_Pin_0" is undefined
+  	 GPIO_InitStructure.GPIO_Pin = GPIO_Senor1| GPIO_Senor2 ;//| GPIO_Senor2 | GPIO_Senor3 | GPIO_Senor4;
+speedtext\speedtext.c(39): error:  #20: identifier "GPIO_Pin_1" is undefined
+  	 GPIO_InitStructure.GPIO_Pin = GPIO_Senor1| GPIO_Senor2 ;//| GPIO_Senor2 | GPIO_Senor3 | GPIO_Senor4;
+speedtext\speedtext.c(41): error:  #20: identifier "GPIO_Mode_IN_FLOATING" is undefined
+  	GPIO_InitStructure.GPIO_Mode=GPIO_Mode_IN_FLOATING;	
+speedtext\speedtext.c(42): error:  #20: identifier "GPIO_Speed_50MHz" is undefined
+  	GPIO_InitStructure.GPIO_Speed=GPIO_Speed_50MHz;	
+speedtext\speedtext.c(45): warning:  #223-D: function "GPIO_Init" declared implicitly
+  		GPIO_Init(GPIO_des, &GPIO_InitStructure);
+speedtext\speedtext.c(46): warning:  #223-D: function "GPIO_SetBits" declared implicitly
+  		GPIO_SetBits(GPIO_des,GPIO_Senor1| GPIO_Senor2);
+speedtext\speedtext.c(57): warning:  #1-D: last line of file ends without a newline
+  }
+speedtext\speedtext.c(57): warning:  #940-D: missing return statement at end of non-void function "InputCheck" 
+  }
+speedtext\speedtext.c: 9 warnings, 6 errors
+compiling led.c...
+..\USER\main.h(18): warning:  #1-D: last line of file ends without a newline
+  #endif
+.\speedtext\speedtext.h(37): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\USER\main.h(18): warning:  #1-D: last line of file ends without a newline
+  #endif
+LED\led.c(19): error:  #20: identifier "GPIO_InitTypeDef" is undefined
+    GPIO_InitTypeDef GPIO_InitStructure;
+LED\led.c(20): warning:  #223-D: function "RCC_APB2PeriphClockCmd" declared implicitly
+    RCC_APB2PeriphClockCmd( LED1_GPIO_CLK, ENABLE); // 使能PC端口时钟  
+LED\led.c(20): error:  #20: identifier "RCC_APB2Periph_GPIOC" is undefined
+    RCC_APB2PeriphClockCmd( LED1_GPIO_CLK, ENABLE); // 使能PC端口时钟  
+LED\led.c(21): error:  #20: identifier "GPIO_Pin_13" is undefined
+    GPIO_InitStructure.GPIO_Pin = LED1_GPIO_PIN;	//选择对应的引脚
+LED\led.c(22): error:  #20: identifier "GPIO_Mode_Out_PP" is undefined
+    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;       
+LED\led.c(23): error:  #20: identifier "GPIO_Speed_50MHz" is undefined
+    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+LED\led.c(24): warning:  #223-D: function "GPIO_Init" declared implicitly
+    GPIO_Init(GPIOC, &GPIO_InitStructure);  //初始化PC端口
+LED\led.c(25): warning:  #223-D: function "GPIO_SetBits" declared implicitly
+    GPIO_SetBits(LED1_GPIO_PORT, LED1_GPIO_PIN );	 // 关闭所有LED
+LED\led.c(37): error:  #20: identifier "GPIO_InitTypeDef" is undefined
+  	GPIO_InitTypeDef GPIO_InitStructure; 
+LED\led.c(39): warning:  #223-D: function "RCC_APB2PeriphClockCmd" declared implicitly
+  	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOE,ENABLE); 
+LED\led.c(39): error:  #20: identifier "RCC_APB2Periph_GPIOE" is undefined
+  	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOE,ENABLE); 
+LED\led.c(40): error:  #20: identifier "GPIO_Pin_5" is undefined
+  	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_5; 
+LED\led.c(42): error:  #20: identifier "GPIO_Mode_IPU" is undefined
+  	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU; 
+LED\led.c(43): warning:  #223-D: function "GPIO_Init" declared implicitly
+  	GPIO_Init(GPIOE, &GPIO_InitStructure); 
+LED\led.c(56): warning:  #223-D: function "GPIO_ReadInputDataBit" declared implicitly
+  	if(GPIO_ReadInputDataBit(GPIOx,GPIO_Pin) == KEY_ON )
+LED\led.c: 9 warnings, 9 errors
+"..\OBJ\TEST_OLED.axf" - 58 Error(s), 48 Warning(s).
+
+<h2>Software Packages used:</h2>
+
+Package Vendor: Keil
+                http://www.keil.com/pack/Keil.STM32F1xx_DFP.2.1.0.pack
+                Keil.STM32F1xx_DFP.2.1.0
+                STMicroelectronics STM32F1 Series Device Support, Drivers and Examples
+
+<h2>Collection of Component include folders:</h2>
+  .\RTE\_QD-OLED
+  D:\keilFile\ARM\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\Include
+
+<h2>Collection of Component Files used:</h2>
+Target not created.
+Build Time Elapsed:  00:00:01
+</pre>
+</body>
+</html>
