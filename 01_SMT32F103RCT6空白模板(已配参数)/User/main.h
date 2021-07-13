@@ -3,13 +3,15 @@
 
 #include "stm32f10x.h"
 #include "stm32f10x_tim.h"
-#include "delay.h"
-#include "sys.h"
+
 #include <stdio.h>
 #include "speedtext.h"
 #include "led.h"
-#include "bsp_GeneralTim.h" 
 
+#include "bsp_GeneralTim.h" 
+#define u8  uint8_t
+
+void show(void);
 void TIM2_CaptureCallBack(void);
 typedef struct{
 	uint8_t TIM2_CH1;

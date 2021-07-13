@@ -29,6 +29,7 @@ extern TIM_ICUserValueTypeDef TIM_ICUserValueStructure2;
 extern USER TIME_SAVE;
 extern uint16_t STATE_USE;
 extern Flag FlagS;
+extern uint32_t TimingDelay;
 void NMI_Handler(void)
 {
 }
@@ -78,6 +79,11 @@ void PendSV_Handler(void)
 {
 }
  
+void SysTick_Handler(void)
+{
+   
+}
+
 
 void GENERAL_TIM_INT_FUN(void)
 {

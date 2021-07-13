@@ -21,12 +21,10 @@ extern TIM_ICUserValueTypeDef TIM_ICUserValueStructure2;//传感器2
 extern USER TIME_SAVE ;
 TIM_ICUserValueTypeDef showOLED;
 USER temp;
-double first;
-double second;
-double Inval;
-double speed1=0;
-double speed2=0;
-double a=0;
+//数组第0位不用
+double time[6];//time[1]代表第一次之间的速度
+double speed[5];
+double a[4];//
 char v1[6];
 char v2[6];
 char a1[6];
@@ -34,7 +32,6 @@ char a1[6];
 
 /***********************************标志位*************************************/
 volatile uint16_t STATE_USE;//捕获通道标志位 0的时候是通道1捕获，1是通道2捕获
-uint16_t time=0;
 /***********************************END*************************************/
 
 uint32_t get_capture_Time(void);
@@ -62,49 +59,60 @@ int main(void)
 		while(1) 
 		{	
 			
+//			OLED_Clear(0);
 
-			if(TIME_SAVE.first_finishing == 1){
-				temp = TIME_SAVE;
-		    
-			}
-			if(TIME_SAVE.second_finishing == 1 && flag == 0)
+//		OLED_ShowString(63,6,"CODE:",16);
+
+//			if(flag == 0){
+//				OLED_Clear(0);
+//				OLED_ShowString(40,3,"LOADING....",16);
+//			}
+
+			if(TIME_SAVE.forth_finishing && flag == 0)
 			{
-				temp = TIME_SAVE;
-				first=temp.first_time/TIM_PscCLK;//算出来ms
-				temp.first_time/=TIM_PscCLK;
-				second=temp.second_time/TIM_PscCLK;
-				temp.second_time/=TIM_PscCLK;
-				Inval=temp.Interval_time/TIM_PscCLK;
+				time[1]=TIME_SAVE.first_time/TIM_PscCLK;//算出来ms
+				time[2]=TIME_SAVE.second_time/TIM_PscCLK;
+				time[3]=TIME_SAVE.third_time/TIM_PscCLK;
+				time[5]=TIME_SAVE.Interval_time/TIM_PscCLK;
+				time[4]=TIME_SAVE.forth_time/TIM_PscCLK;
+				
 				TIME_SAVE.first_finishing=0;
 				TIME_SAVE.second_finishing=0;
+				TIME_SAVE.third_finishing=0;
+				TIME_SAVE.forth_finishing=0;
 				
-				speed1 = 100* senor_length / first ; //1000倍的m/s
-				speed2 = 100* senor_length / second ;
-				a = 1000 * (speed2 - speed1) / Inval;// 1000倍的m/s方
+				speed[1] = 100* senor_length / time[1] ; //1000倍的m/s
+				speed[2] = 100* senor_length / time[2] ;
+				speed[3] = 100* senor_length / time[3] ;
+				
+				a[1] = 100 * (speed[2] *speed[2] - speed[1] * speed[1]) / (2*senor_length);// 10的6倍的m/s方
+				a[2] = senor_length /  ((time[2])*(time[2])) ;
+//				a = 1000 * (speed2 - speed1) / Inval;// 1000倍的m/s方
+//				
+				sprintf(v1, "%.4f", speed[1]);
+				sprintf(v2, "%.4f", speed[2]);
+				sprintf(a1, "%.4f", a[1]);
 				
 				flag =1;
 			}
 			
-			if(flag == 1){
-				sprintf(v1, "%.4f", speed1);
-				sprintf(v2, "%.4f", speed2);
-				sprintf(a1, "%.4f", a);
-			}	
-//			if(show_flag==0 && flag ==1){	OLED_Clear(0);
-//				OLED_ShowString(6,0,"v1:",16);
-//				//如果记录完一次保存到temp里面
-//				OLED_ShowString(40,0,v1,16);
-//				
-//				OLED_ShowString(6,3,"v2:",16);
-//				//如果记录完一次保存到temp里面
-//				OLED_ShowString(40,3,v2,16);
-//				
-//				OLED_ShowString(6,6,"a:",16);
-//				//如果记录完一次保存到temp里面
-//				OLED_ShowString(40,6,a1,16);
-//				
-//				show_flag = 1;
-//			}
+			
+			if(show_flag==0 && flag ==1){	
+				//OLED_Clear(0);
+				//OLED_ShowString(6,0,"v1:",16);
+				//如果记录完一次保存到temp里面
+				//OLED_ShowString(40,0,(u8*)v1,16);
+				
+				//OLED_ShowString(6,3,"v2:",16);
+				//如果记录完一次保存到temp里面
+				//OLED_ShowString(40,3,(u8*)v1,16);
+				
+				//OLED_ShowString(6,6,"a:",16);
+				//如果记录完一次保存到temp里面
+				//OLED_ShowString(40,6,(u8*)a,16);
+				
+				show_flag = 1;
+			}
 			
 //			zhengshu = (uint32_t)get_capture_Time()/TIM_PscCLK;
 //			OLED_ShowNum(80,0,zhengshu,3,16);//显示全局时间
@@ -115,26 +123,23 @@ int main(void)
 //		 
 //			OLED_ShowNum(103,6,flag,3,16);
 
-			//delay_ms(50000);
-			//delay_ms(500);
-			
-	//		if(w%20000 == 0){
-	//			re();
-	//		}
-//			flag=InputCheck(1);
-//			if(flag==1){
-//				LED1_ON;//取反
-//			}else{
-//				LED1_OFF;
-//			}
+
    	}	  
+}
+	
+void show()
+{
+
+//		OLED_ShowString(4,3,"0.96\" OLED TEST",16);
+//		OLED_ShowString(0,6,"ASCII:",16);  
+//		OLED_ShowString(63,6,"CODE:",16);  
 }
 
 void TIM2_CaptureCallBack(void){
 	// 第一次捕获
 	if(FlagS.TIM2_CH1 == 1)
 	{
-			if ( TIM_ICUserValueStructure1.Capture_StartFlag == 0 && TIME_SAVE.states == 1)
+			if ( TIM_ICUserValueStructure1.Capture_StartFlag == 0 && TIME_SAVE.states == 1 && TIME_SAVE.first_finishing == 0)
 		{
 			// 计数器清0
 			TIM_SetCounter ( GENERAL_TIM, 0 );
