@@ -14,11 +14,10 @@
 .\output\led.o: ..\Libraries\FWlib\inc\stm32f10x_usart.h
 .\output\led.o: ..\Libraries\FWlib\inc\misc.h
 .\output\led.o: ..\Libraries\FWlib\inc\stm32f10x_tim.h
+.\output\led.o: ..\System\delay\delay.h
+.\output\led.o: ..\System\sys\sys.h
 .\output\led.o: D:\keilFile\ARM\ARMCC\Bin\..\include\stdio.h
 .\output\led.o: ..\User\speedtext\speedtext.h
 .\output\led.o: ..\User\main.h
-.\output\led.o: ..\User\oled\oled.h
-.\output\led.o: ..\System\sys\sys.h
-.\output\led.o: D:\keilFile\ARM\ARMCC\Bin\..\include\stdlib.h
 .\output\led.o: ..\User\LED\led.h
 .\output\led.o: ..\User\GeneralTim\bsp_GeneralTim.h

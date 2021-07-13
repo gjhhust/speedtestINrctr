@@ -5,7 +5,6 @@
 ".\output\led.o"
 ".\output\speedtext.o"
 ".\output\bsp_usart.o"
-".\output\sys.o"
 ".\output\core_cm3.o"
 ".\output\system_stm32f10x.o"
 ".\output\startup_stm32f10x_hd.o"

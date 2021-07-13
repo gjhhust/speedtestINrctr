@@ -21,17 +21,17 @@ extern TIM_ICUserValueTypeDef TIM_ICUserValueStructure2;//传感器2
 extern USER TIME_SAVE ;
 TIM_ICUserValueTypeDef showOLED;
 USER temp;
-//数组第0位不用
 double time[6];//time[1]代表第一次之间的速度
 double speed[5];
 double a[4];//
-char v1[6];
-char v2[6];
-char a1[6];
+char v1[6]= {0};
+char v2[6]= {0};
+char a1[6]= {0};
 /***********************************声明变量*************************************/
 
 /***********************************标志位*************************************/
 volatile uint16_t STATE_USE;//捕获通道标志位 0的时候是通道1捕获，1是通道2捕获
+
 /***********************************END*************************************/
 
 uint32_t get_capture_Time(void);
@@ -59,16 +59,8 @@ int main(void)
 		while(1) 
 		{	
 			
-//			OLED_Clear(0);
 
-//		OLED_ShowString(63,6,"CODE:",16);
-
-//			if(flag == 0){
-//				OLED_Clear(0);
-//				OLED_ShowString(40,3,"LOADING....",16);
-//			}
-
-			if(TIME_SAVE.forth_finishing && flag == 0)
+			if(TIME_SAVE.forth_finishing &&show_flag==0)
 			{
 				time[1]=TIME_SAVE.first_time/TIM_PscCLK;//算出来ms
 				time[2]=TIME_SAVE.second_time/TIM_PscCLK;
@@ -85,34 +77,55 @@ int main(void)
 				speed[2] = 100* senor_length / time[2] ;
 				speed[3] = 100* senor_length / time[3] ;
 				
-				a[1] = 100 * (speed[2] *speed[2] - speed[1] * speed[1]) / (2*senor_length);// 10的6倍的m/s方
-				a[2] = senor_length /  ((time[2])*(time[2])) ;
+				a[1] = 10000*2 * senor_length*(time[1] - time[2])/((time[1]+time[2])*time[1]*time[2]);// 10的6倍的m/s方
+				a[2] = 10000*2 * senor_length*(time[2] - time[3])/((time[3]+time[2])*time[3]*time[2]);
 //				a = 1000 * (speed2 - speed1) / Inval;// 1000倍的m/s方
 //				
 				sprintf(v1, "%.4f", speed[1]);
+				v1[5]='\0';
 				sprintf(v2, "%.4f", speed[2]);
+				v2[5]='\0';
 				sprintf(a1, "%.4f", a[1]);
+				a1[5]='\0';
 				
-				flag =1;
-			}
-			
-			
-			if(show_flag==0 && flag ==1){	
+				show_flag=1;
+ 
 				//OLED_Clear(0);
-				//OLED_ShowString(6,0,"v1:",16);
-				//如果记录完一次保存到temp里面
-				//OLED_ShowString(40,0,(u8*)v1,16);
-				
-				//OLED_ShowString(6,3,"v2:",16);
-				//如果记录完一次保存到temp里面
-				//OLED_ShowString(40,3,(u8*)v1,16);
-				
-				//OLED_ShowString(6,6,"a:",16);
-				//如果记录完一次保存到temp里面
-				//OLED_ShowString(40,6,(u8*)a,16);
-				
-				show_flag = 1;
 			}
+			
+//			
+//				//OLED_Clear(0);
+//				//OLED_ShowString(6,0,"v1:",16);
+//				//如果记录完一次保存到temp里面
+//				/OLED_ShowString(40,0,(u8*)v1,16);
+//				
+//				//OLED_ShowString(6,3,"v2:",16);
+//				//如果记录完一次保存到temp里面
+//				OLED_ShowString(40,3,(u8*)v2,16);
+//				
+//				OLED_ShowString(6,6,"a:",16);
+//				//如果记录完一次保存到temp里面
+//				OLED_ShowString(40,6,(u8*)a1,16);
+//			if(show_flag == 1){	
+//				
+//				delay_ms(1000);
+
+//			}
+//			if(show_flag==0 && flag ==1){	OLED_Clear(0);
+//				OLED_ShowString(6,0,"v1:",16);
+//				//如果记录完一次保存到temp里面
+//				OLED_ShowString(40,0,v1,16);
+//				
+//				OLED_ShowString(6,3,"v2:",16);
+//				//如果记录完一次保存到temp里面
+//				OLED_ShowString(40,3,v2,16);
+//				
+//				OLED_ShowString(6,6,"a:",16);
+//				//如果记录完一次保存到temp里面
+//				OLED_ShowString(40,6,a1,16);
+//				
+//				show_flag = 1;
+//			}
 			
 //			zhengshu = (uint32_t)get_capture_Time()/TIM_PscCLK;
 //			OLED_ShowNum(80,0,zhengshu,3,16);//显示全局时间
@@ -123,23 +136,26 @@ int main(void)
 //		 
 //			OLED_ShowNum(103,6,flag,3,16);
 
-
+			//delay_ms(50000);
+			//delay_ms(500);
+			
+	//		if(w%20000 == 0){
+	//			re();
+	//		}
+//			flag=InputCheck(1);
+//			if(flag==1){
+//				LED1_ON;//取反
+//			}else{
+//				LED1_OFF;
+//			}
    	}	  
-}
-	
-void show()
-{
-
-//		OLED_ShowString(4,3,"0.96\" OLED TEST",16);
-//		OLED_ShowString(0,6,"ASCII:",16);  
-//		OLED_ShowString(63,6,"CODE:",16);  
 }
 
 void TIM2_CaptureCallBack(void){
 	// 第一次捕获
 	if(FlagS.TIM2_CH1 == 1)
 	{
-			if ( TIM_ICUserValueStructure1.Capture_StartFlag == 0 && TIME_SAVE.states == 1 && TIME_SAVE.first_finishing == 0)
+			if ( TIM_ICUserValueStructure1.Capture_StartFlag == 0 && TIME_SAVE.states == 1)
 		{
 			// 计数器清0
 			TIM_SetCounter ( GENERAL_TIM, 0 );

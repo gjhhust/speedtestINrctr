@@ -338,7 +338,7 @@
               <MiscControls></MiscControls>
               <Define>STM32F10X_HD,USE_STDPERIPH_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath>..\User;..\System\manage;..\Libraries\CMSIS;..\Libraries\CMSIS\startup;..\Libraries\FWlib\inc;..\Libraries\FWlib\src;..\System\delay;..\System\sys;..\System\usart;..\User\GeneralTim;..\User\LED;..\User\speedtext;..\User\tim;..\User\usart;..\User\oled;..\User\stick</IncludePath>
+              <IncludePath>..\User;..\System\manage;..\Libraries\CMSIS;..\Libraries\CMSIS\startup;..\Libraries\FWlib\inc;..\Libraries\FWlib\src;..\System\delay;..\System\sys;..\System\usart;..\User\GeneralTim;..\User\LED;..\User\speedtext;..\User\tim;..\User\usart</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -421,13 +421,6 @@
         </Group>
         <Group>
           <GroupName>SYSTEM</GroupName>
-          <Files>
-            <File>
-              <FileName>sys.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\System\sys\sys.c</FilePath>
-            </File>
-          </Files>
         </Group>
         <Group>
           <GroupName>HARDWARE</GroupName>

@@ -2,9 +2,6 @@
 #define __SPEEDTEXT_H
 
 #include "main.h"
-#include "oled.h"
-#include "sys.h"
-
 
 //定义传感器的接口
 #define GPIO_Senor1    GPIO_Pin_0
